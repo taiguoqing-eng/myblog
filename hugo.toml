@@ -1,0 +1,4 @@
+baseURL = "https://taigong.work/"
+title = "TAIGONGWORK"
+theme = "PaperMod"
+paginate = 5
