@@ -16,6 +16,9 @@ markup:
     guessSyntax: true
     lineNos: true
     theme: "monokai"
+    goldmark:
+    renderer:
+      unsafe: true
 
 outputs:
   home:
