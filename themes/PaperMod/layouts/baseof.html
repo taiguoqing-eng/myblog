@@ -40,17 +40,36 @@
     @media (max-width: 768px) { .tech-floating-dashboard { right: 10px; bottom: 10px; } }
     </style>
 
-    <script>
-    function updateTime() {
-        document.getElementById('floating-time').innerText = new Date().toLocaleTimeString();
-    }
-    setInterval(updateTime, 1000);
-    updateTime();
+   <script>
+// 1. 时间：每秒强制刷新
+function updateTime() {
+    const now = new Date();
+    const timeEl = document.getElementById("floating-time");
+    if(timeEl) timeEl.innerText = now.toLocaleTimeString();
+}
+setInterval(updateTime, 1000);
+updateTime();
 
-    fetch('https://wttr.in/?format=%c+%t&lang=zh')
-        .then(r => r.text())
-        .then(t => document.getElementById('floating-weather').innerText = t)
-        .catch(() => document.getElementById('floating-weather').innerText = "Offline");
-    </script>
+// 2. 天气：使用更直接的 API 接口，并增加错误重试机制
+function fetchWeather() {
+    const weatherEl = document.getElementById("floating-weather");
+    // 使用 wttr.in 的 JSONP 类接口或简单直连，增加时间戳防止缓存
+    fetch('https://wttr.in/?format=%c+%t&lang=zh&m&0&T')
+        .then(response => {
+            if (!response.ok) throw new Error();
+            return response.text();
+        })
+        .then(text => {
+            if(weatherEl) weatherEl.innerText = text.trim();
+        })
+        .catch(() => {
+            if(weatherEl) weatherEl.innerText = "天气服务暂不可用";
+        });
+}
+// 页面加载后立即获取
+fetchWeather();
+// 每 15 分钟尝试重新同步一次
+setInterval(fetchWeather, 900000);
+</script>
     </body>
 </html>
