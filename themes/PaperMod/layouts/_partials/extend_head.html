@@ -3,7 +3,7 @@
 {{- /*     Can be overwritten by partial with the same name in the global layouts. */ -}}
 {{- /* Head custom content area end */ -}}
 <style>
-/* 🖥️ PC 端：完美悬浮于左上角 */
+/* 🖥️ PC 端：完美悬浮于屏幕左上角 */
 @media (min-width: 769px) {
     .tech-top-dashboard {
         position: fixed;
@@ -12,17 +12,19 @@
         z-index: 99999;
         display: flex;
         align-items: center;
-        gap: 12px;
-        padding: 5px 14px;
-        background: rgba(29, 30, 32, 0.05); /* 极其轻薄的磨砂质感 */
-        backdrop-filter: blur(4px);
-        -webkit-backdrop-filter: blur(4px);
+        height: 28px;        /* 严格锁定高度，防止第三方组件撑开变形 */
+        gap: 10px;
+        padding: 0 14px;
+        background: rgba(29, 30, 32, 0.04); /* 极其高档的磨砂透光质感 */
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
         border: 1px dashed var(--border);
         border-radius: 6px;
         font-family: "Courier New", Courier, monospace;
         font-size: 12px;
         color: var(--secondary);
         user-select: none;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.02);
     }
     
     .tech-top-dashboard:hover {
@@ -30,23 +32,24 @@
         border-color: var(--secondary);
     }
 
-    .top-dashboard-divider {
+    .top-top-divider {
         color: var(--border);
-        opacity: 0.8;
+        opacity: 0.6;
     }
 
-    /* 强制抹除和风挂件的原生背景，使其完全透明、一行流对齐 */
-    #he-plugin-simple {
+    /* 抹除 iframe 的原生边界，使其变成全透明纯文本流融入顶栏 */
+    .tech-top-dashboard iframe {
         background: transparent !important;
         border: none !important;
-        padding: 0 !important;
         margin: 0 !important;
-        display: flex !important;
-        align-items: center !important;
+        padding: 0 !important;
+        overflow: hidden;
+        filter: grayscale(100%) contrast(150%); /* 让天气图标完美适配硬核极客黑白单色调 */
+        opacity: 0.85;
     }
 }
 
-/* 📱 移动端自适应：落回到底部 */
+/* 📱 移动端自适应：落回底部，保持整洁不撞车 */
 @media (max-width: 768px) {
     .tech-top-dashboard {
         display: flex;
@@ -60,12 +63,12 @@
         color: var(--secondary);
         border-top: 1px dashed var(--border);
     }
-    .top-dashboard-divider {
+    .top-top-divider {
         display: none;
     }
-    #he-plugin-simple {
-        margin-top: 4px;
+    .tech-top-dashboard iframe {
         background: transparent !important;
+        margin-top: 4px;
     }
 }
 </style>
