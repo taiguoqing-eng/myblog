@@ -1,7 +1,7 @@
 ---
 title: "LangChain和LangGraph"
 date: 2026-07-01T16:00:00+08:00
-draft: true
+draft: false
 description: "介绍LangChain和LangGraph"
 
 # 分类（建议：大方向，1个即可）
