@@ -121,5 +121,7 @@ watch -n 1 npu-smi info
 ```
 当你通过 GPUStack 自带的 Playground 发送 Prompt 时，你会非常直观地看到：由于配置了 PP=4（流水线并行），4台机器的 310P3 显存占用是满的（约 36G+），但 AI Core 利用率（算力）并不是同时拉满，而是像接力赛一样，节点0 闪烁 -> 节点1 闪烁 -> 节点2 闪烁 -> 节点3 闪烁。
 
+![alt text](image.png)
+![alt text](image-1.png)
 ## 💡 结论
 利用 GPUStack + Docker 容器直通，你免去了手动管理分布式多进程拉起的痛苦。虽然受限于 310P3 LPDDR4X 内存带宽，最终的吐字速度（Token/s）依然是一秒几个字的“极限验证速度”，但你用最现代化的私有大模型 management 框架，成功在老旧/魔改推理卡上完成了对 2840亿 参数顶级 MoE 模型的驯服！
