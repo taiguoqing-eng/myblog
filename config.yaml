@@ -44,10 +44,6 @@ params:
   ShowShareButtons: true
   ShowWordCount: true
 
-  homeInfoParams:
-    Title: "Taigong Work 👋"
-    Content: "记录 AI、网络安全、架构运维与工程实践"
-
 menu:
   main:
     - name: "首页"
