@@ -3,40 +3,53 @@
 {{- /*     Can be overwritten by partial with the same name in the global layouts. */ -}}
 {{- /* Head custom content area end */ -}}
 <style>
-footer.footer {
-    padding-bottom: 30px !important;
+/* 🖥️ PC 端：完美悬浮于屏幕左下角 */
+@media (min-width: 769px) {
+    .tech-dashboard {
+        position: fixed;
+        left: 20px;          /* 距离屏幕左侧 20px */
+        bottom: 20px;        /* 距离屏幕底部 20px */
+        z-index: 9999;       /* 确保图层在最上方 */
+        display: flex;
+        flex-direction: column; /* 改为纵向排列（时间在上，天气在下），更适合左侧窄空间 */
+        align-items: flex-start;/* 左对齐 */
+        gap: 6px;
+        padding: 10px 14px;
+        background: var(--entry); /* 自动继承 PaperMod 卡片的灰色背景色 */
+        border: 1px dashed var(--border); /* 精致的科技感虚线边框 */
+        border-radius: 4px;
+        font-family: "Courier New", Courier, monospace;
+        font-size: 11px;
+        color: var(--secondary);
+        user-select: none;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* 淡淡的阴影层叠感 */
+    }
+    
+    /* 左侧纵向排列时，不再需要中间的分隔竖线 */
+    .dashboard-divider {
+        display: none;
+    }
+    
+    .tech-dashboard iframe {
+        background: transparent !important;
+        overflow: hidden;
+    }
 }
 
-.tech-dashboard {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-    margin-top: 15px;
-    padding-top: 12px;
-    font-family: "Courier New", Courier, monospace;
-    font-size: 12px;
-    color: var(--secondary);
-    border-top: 1px dashed var(--border);
-    user-select: none;
-}
-
-/* 让内嵌的天气无缝融入暗黑/白天模式，去掉边框和背景 */
-.tech-dashboard iframe {
-    background: transparent !important;
-    overflow: hidden;
-    vertical-align: middle;
-}
-
-.dashboard-divider {
-    color: var(--border);
-    opacity: 0.7;
-}
-
+/* 📱 移动端自适应：为了不遮挡手机版文章内容，自动恢复为底部原生排版 */
 @media (max-width: 768px) {
     .tech-dashboard {
-        flex-direction: column;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         gap: 6px;
+        margin: 20px auto 0;
+        padding: 12px 10px;
+        font-family: "Courier New", Courier, monospace;
+        font-size: 12px;
+        color: var(--secondary);
+        border-top: 1px dashed var(--border);
+        flex-direction: column;
     }
     .dashboard-divider {
         display: none;

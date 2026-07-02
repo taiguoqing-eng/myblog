@@ -1,9 +1,6 @@
 {{- /* Footer custom content area start */ -}}
 {{- /*     Insert any custom code web-analytics, resources, etc. here */ -}}
 {{- /* Footer custom content area end */ -}}
-<script>
-// 1. 定义极其稳定的天气外挂组件 (采用高度定制的 iframe 沙盒，免去 fetch 跨域)
-const dashboardHTML = `
 <div id="tech-dashboard" class="tech-dashboard">
     <span id="dashboard-time">0000-00-00 00:00:00</span>
     <span class="dashboard-divider">|</span>
@@ -11,30 +8,23 @@ const dashboardHTML = `
             src="https://tianqi.2345.com/plugin/widget/index.htm?s=3&z=2&t=0&v=0&d=1&bd=0&k=000000&f=808080&q=1&e=0&a=1&c=54511&w=140&h=20&align=center">
     </iframe>
 </div>
-`;
 
-// 2. 注入到 PaperMod 原生底部
+<script>
 document.addEventListener("DOMContentLoaded", function() {
-    const footer = document.querySelector('footer.footer');
-    if (footer) {
-        footer.insertAdjacentHTML('beforeend', dashboardHTML);
-        
-        // 动态时间秒表
-        const timeEl = document.getElementById('dashboard-time');
-        if (timeEl) {
-            function updateDashboardTime() {
-                const now = new Date();
-                const year = now.getFullYear();
-                const month = String(now.getMonth() + 1).padStart(2, '0');
-                const day = String(now.getDate()).padStart(2, '0');
-                const hours = String(now.getHours()).padStart(2, '0');
-                const minutes = String(now.getMinutes()).padStart(2, '0');
-                const seconds = String(now.getSeconds()).padStart(2, '0');
-                timeEl.innerText = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-            }
-            setInterval(updateDashboardTime, 1000);
-            updateDashboardTime();
+    const timeEl = document.getElementById('dashboard-time');
+    if (timeEl) {
+        function updateDashboardTime() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            timeEl.innerText = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
         }
+        setInterval(updateDashboardTime, 1000);
+        updateDashboardTime();
     }
 });
 </script>
