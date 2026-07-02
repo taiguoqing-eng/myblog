@@ -16,6 +16,7 @@ tags:
 ---
 需求是定期备份某个远程目录文件，增量备份。
 以下内容为脚本，请作为批处理脚本使用
+```
 @echo off
 chcp 65001 >nul
 
@@ -51,3 +52,4 @@ echo ============================================== >> %LOG%
 
 :: Return success if RC is less than 8
 if %RC% LSS 8 (exit /b 0) else (exit /b %RC%)
+```
