@@ -3,37 +3,20 @@
 {{- /*     Can be overwritten by partial with the same name in the global layouts. */ -}}
 {{- /* Head custom content area end */ -}}
 <style>
-/* 悬浮在左上角的极简状态栏 */
 .tech-top-dashboard {
-    position: fixed;
-    left: 20px;
-    top: 20px;
-    z-index: 9999;
-    padding: 6px 12px;
-    background: rgba(29, 30, 32, 0.03);
-    backdrop-filter: blur(5px);
-    border: 1px dashed var(--border);
-    border-radius: 4px;
-    font-family: monospace; /* 硬核终端感 */
-    font-size: 11px;
-    color: var(--secondary);
     display: flex;
-    gap: 8px;
-    pointer-events: none; /* 防止遮挡鼠标操作 */
-}
-
-.top-top-divider { color: var(--border); }
-
-/* 手机端移到底部 */
-@media (max-width: 768px) {
-    .tech-top-dashboard {
-        position: relative;
-        left: auto;
-        top: auto;
-        margin: 20px auto;
-        justify-content: center;
-        border: none;
-        border-top: 1px dashed var(--border);
-    }
+    justify-content: flex-start; /* 左侧对齐 */
+    align-items: center;
+    gap: 12px;
+    margin: 10px 0 20px 0; /* 在 header 和文章之间预留空间 */
+    padding: 8px 15px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-family: monospace;
+    font-size: 13px;
+    color: var(--secondary);
+    background: var(--entry);
+    width: fit-content; /* 自适应内容宽度 */
+    max-width: 100%;
 }
 </style>
