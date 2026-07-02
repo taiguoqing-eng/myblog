@@ -3,31 +3,40 @@
 {{- /*     Can be overwritten by partial with the same name in the global layouts. */ -}}
 {{- /* Head custom content area end */ -}}
 <style>
-/* 仪表盘小部件全局样式 */
+footer.footer {
+    padding-bottom: 30px !important;
+}
+
 .tech-dashboard {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 15px;
-    padding: 15px 10px;
-    margin: 20px auto 0 auto;
-    max-width: var(--main-width); /* 限制最大宽度，与 PaperMod 保持对齐 */
-    font-family: "Courier New", Courier, monospace; /* 采用硬核等宽字体 */
-    font-size: 13px;
-    color: var(--secondary); /* 自动继承 PaperMod 的次级文字颜色 */
+    gap: 12px;
+    margin-top: 15px;
+    padding-top: 12px;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 12px;
+    color: var(--secondary);
     border-top: 1px dashed var(--border);
     user-select: none;
 }
 
-.dashboard-divider {
-    color: var(--border);
+/* 让内嵌的天气无缝融入暗黑/白天模式，去掉边框和背景 */
+.tech-dashboard iframe {
+    background: transparent !important;
+    overflow: hidden;
+    vertical-align: middle;
 }
 
-/* 移动端自适应 */
+.dashboard-divider {
+    color: var(--border);
+    opacity: 0.7;
+}
+
 @media (max-width: 768px) {
     .tech-dashboard {
         flex-direction: column;
-        gap: 5px;
+        gap: 6px;
     }
     .dashboard-divider {
         display: none;
