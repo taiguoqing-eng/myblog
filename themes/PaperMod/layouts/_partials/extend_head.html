@@ -3,7 +3,7 @@
 {{- /*     Can be overwritten by partial with the same name in the global layouts. */ -}}
 {{- /* Head custom content area end */ -}}
 <style>
-/* 🖥️ PC 端：优雅微型左上角顶栏挂件 */
+/* 🖥️ PC 端：完美悬浮于左上角 */
 @media (min-width: 769px) {
     .tech-top-dashboard {
         position: fixed;
@@ -13,24 +13,21 @@
         display: flex;
         align-items: center;
         gap: 12px;
-        padding: 6px 14px;
-        background: rgba(29, 30, 32, 0.05); /* 极其轻薄的微透背景 */
-        backdrop-filter: blur(4px);         /* 现代毛玻璃质感 */
+        padding: 5px 14px;
+        background: rgba(29, 30, 32, 0.05); /* 极其轻薄的磨砂质感 */
+        backdrop-filter: blur(4px);
         -webkit-backdrop-filter: blur(4px);
-        border: 1px dashed var(--border);    /* 标志性的科技虚线框 */
+        border: 1px dashed var(--border);
         border-radius: 6px;
-        font-family: "Courier New", Courier, monospace; /* 纯正等宽字体 */
+        font-family: "Courier New", Courier, monospace;
         font-size: 12px;
         color: var(--secondary);
         user-select: none;
-        transition: all 0.3s ease;
     }
     
-    /* 鼠标悬停时稍微亮起，增加交互感 */
     .tech-top-dashboard:hover {
         background: var(--entry);
         border-color: var(--secondary);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     }
 
     .top-dashboard-divider {
@@ -38,16 +35,18 @@
         opacity: 0.8;
     }
 
-    /* 强行抹除第三方插件可能自带的外边距，确保绝对一行对齐 */
-    #weather-v2-plugin-simple {
-        display: flex !important;
-        align-items: center !important;
+    /* 强制抹除和风挂件的原生背景，使其完全透明、一行流对齐 */
+    #he-plugin-simple {
+        background: transparent !important;
+        border: none !important;
         padding: 0 !important;
         margin: 0 !important;
+        display: flex !important;
+        align-items: center !important;
     }
 }
 
-/* 📱 移动端自适应：由于手机端左上角会撞车导航栏，自动沉底作为原生 Footer 优雅展示 */
+/* 📱 移动端自适应：落回到底部 */
 @media (max-width: 768px) {
     .tech-top-dashboard {
         display: flex;
@@ -64,8 +63,9 @@
     .top-dashboard-divider {
         display: none;
     }
-    #weather-v2-plugin-simple {
+    #he-plugin-simple {
         margin-top: 4px;
+        background: transparent !important;
     }
 }
 </style>

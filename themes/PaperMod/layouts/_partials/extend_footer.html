@@ -4,11 +4,11 @@
 <div id="tech-top-dashboard" class="tech-top-dashboard">
     <span id="top-dashboard-time">0000-00-00 00:00:00</span>
     <span class="top-dashboard-divider">|</span>
-    <div id="weather-v2-plugin-simple"></div>
+    <div id="he-plugin-simple"></div>
 </div>
 
 <script>
-// 1. 动态时间逻辑
+// 1. 动态时间秒表
 document.addEventListener("DOMContentLoaded", function() {
     const timeEl = document.getElementById('top-dashboard-time');
     if (timeEl) {
@@ -27,10 +27,10 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-// 2. 官方极简天气插件配置 (透明背景、自适应文字颜色、横向不缩进)
+// 2. 和风天气最新极简流挂件配置
 WIDGET = {
   "CONFIG": {
-    "modules": "012",
+    "modules": "01234",
     "background": "5",
     "tmpColor": "858585",
     "tmpSize": "12",
@@ -44,10 +44,19 @@ WIDGET = {
     "shadow": "0",
     "language": "auto",
     "fixed": "false",
-    "vertical": "left",
+    "vertical": "top",
     "horizontal": "left",
-    "key": "cc72b0c48e894c259f9cbfa9fe3f3893"
+    "key": "b0f7eb612b7f4335ba48c5e0be8ca964"
   }
 };
+(function (d) {
+  var cs = d.createElement('link');
+  cs.rel = 'stylesheet';
+  cs.href = 'https://widget.qweather.net/simple/static/css/he-simple.css?v=2.0';
+  var s = d.createElement('script');
+  s.src = 'https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0';
+  var sn = d.getElementsByTagName('script')[0];
+  sn.parentNode.insertBefore(cs, sn);
+  sn.parentNode.insertBefore(s, sn);
+}(document));
 </script>
-<script src="https://apip.weatherdt.com/simple/static/js/weather-simple-common.js?v=2.0"></script>
