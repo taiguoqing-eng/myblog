@@ -121,8 +121,8 @@ watch -n 1 npu-smi info
 ```
 当你通过 GPUStack 自带的 Playground 发送 Prompt 时，你会非常直观地看到：由于配置了 PP=4（流水线并行），4台机器的 310P3 显存占用是满的（约 36G+），但 AI Core 利用率（算力）并不是同时拉满，而是像接力赛一样，节点0 闪烁 -> 节点1 闪烁 -> 节点2 闪烁 -> 节点3 闪烁。
 
-![img](/static/images/image-1.png)
-![img](/static/images/image.png)
+![img](/images/image-1.png)
+![img](/images/image.png)
 
 
 ## 💡 结论
