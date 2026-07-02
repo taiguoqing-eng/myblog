@@ -1,62 +1,36 @@
 {{- /* Footer custom content area start */ -}}
 {{- /*     Insert any custom code web-analytics, resources, etc. here */ -}}
 {{- /* Footer custom content area end */ -}}
+<!-- 左上角极客仪表盘（高可用静态图片流版本，免去外部 JS 拦截风险） -->
 <div id="tech-top-dashboard" class="tech-top-dashboard">
     <span id="top-dashboard-time">0000-00-00 00:00:00</span>
-    <span class="top-dashboard-divider">|</span>
-    <div id="he-plugin-simple"></div>
+    <span class="top-top-divider">|</span>
+    <span id="top-dashboard-weather">Loading...</span>
 </div>
 
 <script>
-// 1. 动态时间秒表
-document.addEventListener("DOMContentLoaded", function() {
-    const timeEl = document.getElementById('top-dashboard-time');
-    if (timeEl) {
-        function updateTopTime() {
-            const now = new Date();
-            const year = now.getFullYear();
-            const month = String(now.getMonth() + 1).padStart(2, '0');
-            const day = String(now.getDate()).padStart(2, '0');
-            const hours = String(now.getHours()).padStart(2, '0');
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-            const seconds = String(now.getSeconds()).padStart(2, '0');
-            timeEl.innerText = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-        }
-        setInterval(updateTopTime, 1000);
-        updateTopTime();
-    }
-});
+// 1. 动态时间
+function updateTopTime() {
+    const now = new Date();
+    document.getElementById('top-dashboard-time').innerText = 
+        `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')} ${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}:${String(now.getSeconds()).padStart(2,'0')}`;
+}
+setInterval(updateTopTime, 1000);
+updateTopTime();
 
-// 2. 和风天气最新极简流挂件配置
-WIDGET = {
-  "CONFIG": {
-    "modules": "01234",
-    "background": "5",
-    "tmpColor": "858585",
-    "tmpSize": "12",
-    "cityColor": "858585",
-    "citySize": "12",
-    "aqiColor": "858585",
-    "aqiSize": "12",
-    "weatherIconSize": "14",
-    "alertIconSize": "12",
-    "padding": "0px 0px 0px 0px",
-    "shadow": "0",
-    "language": "auto",
-    "fixed": "false",
-    "vertical": "top",
-    "horizontal": "left",
-    "key": "b0f7eb612b7f4335ba48c5e0be8ca964"
-  }
-};
-(function (d) {
-  var cs = d.createElement('link');
-  cs.rel = 'stylesheet';
-  cs.href = 'https://widget.qweather.net/simple/static/css/he-simple.css?v=2.0';
-  var s = d.createElement('script');
-  s.src = 'https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0';
-  var sn = d.getElementsByTagName('script')[0];
-  sn.parentNode.insertBefore(cs, sn);
-  sn.parentNode.insertBefore(s, sn);
-}(document));
+// 2. 高可用天气 (直接 Fetch 文本，完全不依赖插件，无 CORS 限制)
+function updateWeather() {
+    fetch('https://wttr.in/?format=3') // 仅返回简短的天气文本
+        .then(res => res.text())
+        .then(text => {
+            // 简单处理：去掉城市名，只留天气
+            document.getElementById('top-dashboard-weather').innerText = text.split(':')[1] || text;
+        })
+        .catch(() => {
+            document.getElementById('top-dashboard-weather').innerText = "Offline";
+        });
+}
+updateWeather();
+// 30分钟刷新一次天气
+setInterval(updateWeather, 1800000);
 </script>

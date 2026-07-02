@@ -3,72 +3,37 @@
 {{- /*     Can be overwritten by partial with the same name in the global layouts. */ -}}
 {{- /* Head custom content area end */ -}}
 <style>
-/* 🖥️ PC 端：完美悬浮于屏幕左上角 */
-@media (min-width: 769px) {
-    .tech-top-dashboard {
-        position: fixed;
-        left: 24px;
-        top: 15px;
-        z-index: 99999;
-        display: flex;
-        align-items: center;
-        height: 28px;        /* 严格锁定高度，防止第三方组件撑开变形 */
-        gap: 10px;
-        padding: 0 14px;
-        background: rgba(29, 30, 32, 0.04); /* 极其高档的磨砂透光质感 */
-        backdrop-filter: blur(5px);
-        -webkit-backdrop-filter: blur(5px);
-        border: 1px dashed var(--border);
-        border-radius: 6px;
-        font-family: "Courier New", Courier, monospace;
-        font-size: 12px;
-        color: var(--secondary);
-        user-select: none;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-    }
-    
-    .tech-top-dashboard:hover {
-        background: var(--entry);
-        border-color: var(--secondary);
-    }
-
-    .top-top-divider {
-        color: var(--border);
-        opacity: 0.6;
-    }
-
-    /* 抹除 iframe 的原生边界，使其变成全透明纯文本流融入顶栏 */
-    .tech-top-dashboard iframe {
-        background: transparent !important;
-        border: none !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        overflow: hidden;
-        filter: grayscale(100%) contrast(150%); /* 让天气图标完美适配硬核极客黑白单色调 */
-        opacity: 0.85;
-    }
+/* 悬浮在左上角的极简状态栏 */
+.tech-top-dashboard {
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    z-index: 9999;
+    padding: 6px 12px;
+    background: rgba(29, 30, 32, 0.03);
+    backdrop-filter: blur(5px);
+    border: 1px dashed var(--border);
+    border-radius: 4px;
+    font-family: monospace; /* 硬核终端感 */
+    font-size: 11px;
+    color: var(--secondary);
+    display: flex;
+    gap: 8px;
+    pointer-events: none; /* 防止遮挡鼠标操作 */
 }
 
-/* 📱 移动端自适应：落回底部，保持整洁不撞车 */
+.top-top-divider { color: var(--border); }
+
+/* 手机端移到底部 */
 @media (max-width: 768px) {
     .tech-top-dashboard {
-        display: flex;
+        position: relative;
+        left: auto;
+        top: auto;
+        margin: 20px auto;
         justify-content: center;
-        align-items: center;
-        gap: 8px;
-        margin: 30px auto 10px;
-        padding: 15px 10px 0;
-        font-family: "Courier New", Courier, monospace;
-        font-size: 12px;
-        color: var(--secondary);
+        border: none;
         border-top: 1px dashed var(--border);
-    }
-    .top-top-divider {
-        display: none;
-    }
-    .tech-top-dashboard iframe {
-        background: transparent !important;
-        margin-top: 4px;
     }
 }
 </style>
