@@ -1202,7 +1202,7 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 执行结果
-
+```MarkDown
 Let| me| look| up| the| current| weather| in| San| Francisco|.|调用工具: {'name': 'tavily_search', 'args': {'query': 'current weather in San Francisco', 'search_depth': 'basic'}, 'id': 'call_00_QaGKAAhxxDmgUExKL9Md7517', 'type': 'tool_call'}
 工具执行完毕，返回模型继续推理...
 Let| me| try| again|.|调用工具: {'name': 'tavily_search', 'args': {'query': 'San Francisco weather today', 'search_depth': 'basic'}, 'id': 'call_00_0t5rBYaVJrV0Iry7XtIJ8882', 'type': 'tool_call'}
@@ -1242,3 +1242,4 @@ Here|'s| the| current| weather| in| **|Los| Angeles|**| as| of| the| same| time|
 ||| 💧| Humidity| || |86|%| || |83|%| |
 
 |LA| is| about| **|7|°|F| warmer|**| than| SF| tonight|,| though| it|'s| more| over|cast|.| Both| are| dry| with| no| rain| expected|!|
+```
