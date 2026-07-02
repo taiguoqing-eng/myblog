@@ -2,23 +2,25 @@
 {{- /*     Insert any custom code (web-analytics, resources, etc.) - it will appear in the <head></head> section of every page. */ -}}
 {{- /*     Can be overwritten by partial with the same name in the global layouts. */ -}}
 {{- /* Head custom content area end */ -}}
+<style>
 /* 仪表盘小部件全局样式 */
 .tech-dashboard {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 15px;
-    padding: 10px;
-    margin-top: 20px;
+    padding: 15px 10px;
+    margin: 20px auto 0 auto;
+    max-width: var(--main-width); /* 限制最大宽度，与 PaperMod 保持对齐 */
     font-family: "Courier New", Courier, monospace; /* 采用硬核等宽字体 */
     font-size: 13px;
     color: var(--secondary); /* 自动继承 PaperMod 的次级文字颜色 */
     border-top: 1px dashed var(--border);
+    user-select: none;
 }
 
 .dashboard-divider {
     color: var(--border);
-    user-select: none;
 }
 
 /* 移动端自适应 */
@@ -31,3 +33,4 @@
         display: none;
     }
 }
+</style>
