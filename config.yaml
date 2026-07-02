@@ -1,13 +1,21 @@
-baseURL: "https://taigong.work/"
-title: "TAIGONG WORK"
+baseURL: "https://www.taigong.work/"  # 建议加上 www，匹配你的主域名
+title: "邰工的个人技术博客"
 languageCode: "zh-cn"
-date: 2026-07-01
-toc: true # 开启目录
 theme: "PaperMod"
 
-paginate: 10
+# 修复之前的淘汰参数（已将 paginate 改为新语法）
+pagination:
+  pagerSize: 10
 
 enableRobotsTXT: true
+
+# 补充：从 toml 合并过来的高级代码高亮配置
+markup:
+  highlight:
+    codeFences: true
+    guessSyntax: true
+    lineNos: true
+    theme: "monokai"
 
 outputs:
   home:
@@ -22,7 +30,7 @@ outputs:
 
 params:
   env: production
-  description: "技术博客 / AI / 安全 / 架构记录"
+  description: "专注于网络安全、自动化运维与 IT 技术分享的个人博客。"
   author: "Taigong"
 
   defaultTheme: auto
@@ -38,7 +46,7 @@ params:
 
   homeInfoParams:
     Title: "Taigong Work 👋"
-    Content: "记录 AI、安全、架构与工程实践"
+    Content: "记录 AI、网络安全、架构运维与工程实践"
 
 menu:
   main:
