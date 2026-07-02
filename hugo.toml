@@ -1,5 +1,13 @@
 baseURL = "https://taigong.work/"
-title = "TAIGONGWORK"
+title = '邰工的个人技术博客' # 你的网站标题
+languageCode = 'zh-cn'     # 设置为中文，防止浏览器误判需要翻译
+description = '专注于网络安全、自动化运维与 IT 技术分享的个人博客。'
 theme = "PaperMod"
 [pagination]
   pagerSize = 10
+[markup]
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = true
+    lineNos = true       # 显示行号
+    theme = 'monokai'   # 推荐主题：monokai, dracula, 或 github-dark

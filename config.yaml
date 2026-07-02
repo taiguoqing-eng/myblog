@@ -1,6 +1,8 @@
 baseURL: "https://taigong.work/"
 title: "TAIGONG WORK"
 languageCode: "zh-cn"
+date: 2026-07-01
+toc: true # 开启目录
 theme: "PaperMod"
 
 paginate: 10
