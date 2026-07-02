@@ -1,4 +1,5 @@
 baseURL = "https://taigong.work/"
 title = "TAIGONGWORK"
 theme = "PaperMod"
-paginate = 5
+[pagination]
+  pagerSize = 10
