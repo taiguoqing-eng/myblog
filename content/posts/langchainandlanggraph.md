@@ -209,7 +209,7 @@ query(question)
 ### 1. 环境准备与 API 客户端初始化
 
 python
-
+```py
 from dotenv import load_dotenv
 _ = load_dotenv()
 from openai import OpenAI
@@ -220,7 +220,7 @@ client = OpenAI(
     api_key=DEEPSEEK_API_KEY,
     base_url="https://api.deepseek.com/v1"
 )
-
+```
 - 从 `.env` 文件加载环境变量，获取 DeepSeek 的 API 密钥。
     
 - 创建 OpenAI 客户端，并指定 `base_url` 为 DeepSeek 官方 API 地址。
@@ -233,7 +233,7 @@ client = OpenAI(
 ### 2. Agent 类：对话管理与模型调用
 
 python
-
+```py
 class Agent:
     def __init__(self, system=""):
         self.system = system
@@ -252,7 +252,7 @@ class Agent:
             messages=self.messages
         )
         return completion.choices[0].message.content
-
+```
 - **`Agent`** 维护一个对话历史 `self.messages`。
     
 - **初始化时**可以设置系统提示（system prompt）。
@@ -275,12 +275,12 @@ class Agent:
 ### 3. 系统 Prompt：定义 ReAct 行为模式
 
 python
-
+```py
 prompt = """
 You run in a loop of Thought, Action, PAUSE, Observation...
 ...（详细内容）
 """.strip()
-
+```
 这个 prompt 告诉模型：
 
 - 使用 **Thought** 描述推理过程。
@@ -306,7 +306,7 @@ You run in a loop of Thought, Action, PAUSE, Observation...
 ### 4. 工具函数与动作映射
 
 python
-
+```py
 def calculate(what):
     return eval(what)
 def average_dog_weight(name):
@@ -322,7 +322,7 @@ known_actions = {
     "calculate": calculate,
     "average_dog_weight": average_dog_weight
 }
-
+```
 - **`calculate`**：直接 `eval` 字符串（有安全风险，示例可接受）。
     
 - **`average_dog_weight`**：基于品种名返回写死的体重字符串。
@@ -337,14 +337,14 @@ known_actions = {
 在代码中间部分，用户手动演示了如何一步步调用：
 
 python
-
+```py
 abot = Agent(prompt)
 result = abot("How much does a toy poodle weigh?")
 print(result)                     # 模型输出 Action 和 PAUSE
 result = average_dog_weight("Toy Poodle")   # 手工执行工具
 next_prompt = "Observation: {}".format(result)
 abot(next_prompt)                 # 将 Observation 喂给 Agent
-
+```
 类似地，后面的代码又手动处理了两只狗的体重计算问题：
 
 - 先分别调用 `average_dog_weight` 获取两只狗的体重。
@@ -361,7 +361,7 @@ abot(next_prompt)                 # 将 Observation 喂给 Agent
 ### 6. 自动循环函数 `query`
 
 python
-
+```py
 action_re = re.compile('^Action: (\w+): (.*)$')
 def query(question, max_turns=5):
     i = 0
@@ -386,7 +386,7 @@ def query(question, max_turns=5):
             next_prompt = "Observation: {}".format(observation)
         else:
             return
-
+```
 #### 工作流程
 
 1. **初始化**：创建新的 `Agent` 实例（传入系统 prompt），`next_prompt` 初始为用户问题。
@@ -421,11 +421,11 @@ def query(question, max_turns=5):
 #### 示例调用
 
 python
-
+```py
 question = """I have 2 dogs, a border collie and a scottish terrier. \
 What is their combined weight"""
 query(question)
-
+```
 运行时会自动：
 
 1. 模型输出：`Action: average_dog_weight: Border Collie` → 工具返回 `"a Border Collies average weight is 37 lbs"` → 作为 Observation 喂回。
@@ -608,14 +608,14 @@ llm (调用模型) → exists_action (判断是否有工具调用) → 如果有
 ### 3. DeepSeek 配置兼容性
 
 python
-
+```py
 deepseek_model = ChatOpenAI(
     model="deepseek-chat",
     openai_api_key=DEEPSEEK_API_KEY,
     openai_api_base="https://api.deepseek.com/v1",
     temperature=0
 )
-
+```
 - DeepSeek 完全兼容 OpenAI 的 function calling API，因此 `model.bind_tools(tools)` 可以正常工作。
     
 - 使用 `openai_api_base` 而不是 `base_url`，这是 `langchain_openai` 的旧参数名，但依然有效。
@@ -710,29 +710,31 @@ LangChainPendingDeprecationWarning: The default value of `allowed_objects` will 
 目前 `take_action` 是串行执行所有工具调用。如果模型一次请求多个工具（如测试2），可以改为并发执行以提高效率：
 
 python
-
+```py
 from concurrent.futures import ThreadPoolExecutor
 def take_action(self, state):
     tool_calls = state['messages'][-1].tool_calls
     with ThreadPoolExecutor() as executor:
         results = list(executor.map(self._invoke_tool, tool_calls))
     return {'messages': results}
-
+```
 ### 6.2 错误处理增强
 
 当工具名称不存在时，只返回字符串 `"bad tool name, retry"`。可以更明确地引导模型：
 
 python
-
+```py
 result = f"Error: Tool '{t['name']}' not found. Available tools: {list(self.tools.keys())}"
-
+```
 ### 6.3 最大循环次数保护
 
 目前没有设置最大迭代次数，如果模型陷入循环（反复请求相同工具），理论上会无限运行。可以在 `Agent` 中添加计数器：
 
 python
+```py
 def __init__(self, ..., max_iterations=10):
     self.max_iterations = max_iterations
+```
 并在 `call_openai` 或图外部控制。
 
 ### 6.4 环境变量检查
@@ -740,8 +742,10 @@ def __init__(self, ..., max_iterations=10):
 你已经检查了 `DEEPSEEK_API_KEY`，但 `TAVILY_API_KEY` 没有显式检查。可以添加：
 
 python
+```py
 if not os.getenv("TAVILY_API_KEY"):
     raise ValueError("请设置 TAVILY_API_KEY 环境变量")
+```
 ### 6.5 模型选择
 
 - `deepseek-chat` 对于大多数任务足够好。如果任务涉及大量代码或逻辑推理，可以尝试 `deepseek-coder`。
@@ -802,7 +806,7 @@ result = client.search("What is in Nvidia's new Blackwell GPU?",
 print(result["answer"])
 ```
 ### Regular Search
-```
+```py
 from ddgs import DDGS
 import requests
 from bs4 import BeautifulSoup
@@ -873,7 +877,7 @@ print(weather_data)
 ```
 *different from agentic and regular search*
 
-```
+```py
 from ddgs import DDGS
 import requests
 from bs4 import BeautifulSoup
