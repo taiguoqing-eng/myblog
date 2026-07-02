@@ -34,8 +34,6 @@ params:
   author: "Taigong"
 
   defaultTheme: auto
-  customCSS:
-    - "css/extended.css"
 
   ShowReadingTime: true
   ShowPostNavLinks: true
