@@ -64,3 +64,25 @@ div.highlight:hover .copy-code,
 pre:hover .copy-code {
     display: block;
 }
+/* ==================== 邰工的自定义字体微调 ==================== */
+
+/* 1. 强制缩小首页“👋 欢迎来到 邰工的个人技术博客”的字体 */
+.post-content h1, #-\u6b22\u8fce\u6765\u5230-\u90af\u5de5\u7684\u4e2a\u4eba\u6280\u672f\u535a\u5ba2 {
+    font-size: 26px !important;
+    font-weight: 700 !important;
+}
+
+/* 2. 强制缩小首页文章列表中，所有文章标题的字体大小 */
+.first-entry .entry-header h2,
+.post-entry .entry-header h2,
+.entry-hint-parent {
+    font-size: 20px !important;
+    font-weight: 600 !important;
+}
+
+/* 3. 强制缩小点击进入文章详情页后的主标题 */
+.post-single .post-title,
+h1.post-title {
+    font-size: 26px !important;
+    font-weight: 700 !important;
+}
