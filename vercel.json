@@ -1,4 +1,8 @@
 {
   "buildCommand": "hugo --gc --minify",
-  "outputDirectory": "public"
+  "outputDirectory": "public",
+  "rewrites": [
+    { "source": "/admin/config.yml", "destination": "/admin/config.yml" },
+    { "source": "/admin", "destination": "/admin/index.html" }
+  ]
 }
