@@ -4,13 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>CMS</title>
-    <!-- 显式指向 config.yml -->
-    <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url">
   </head>
   <body>
-    <!-- 挂载点 -->
     <div id="nc-root"></div>
-    <!-- 引入 Decap CMS -->
+    <!-- 使用 unpkg 官方源，确保不是缓存过的 Netlify 镜像 -->
     <script src="https://unpkg.com/decap-cms@3.1.0/dist/decap-cms.js"></script>
   </body>
 </html>
