@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>ISO27001 on 邰工的个人技术博客</title>
+    <link>https://www.taigong.work/tags/iso27001/</link>
+    <description>Recent content in ISO27001 on 邰工的个人技术博客</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 01 Jul 2026 15:00:00 +0800</lastBuildDate>
+    <atom:link href="https://www.taigong.work/tags/iso27001/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>信息安全管理体系方案-ISO27001</title>
+      <link>https://www.taigong.work/posts/iso27001-plan/</link>
+      <pubDate>Wed, 01 Jul 2026 15:00:00 +0800</pubDate>
+      <guid>https://www.taigong.work/posts/iso27001-plan/</guid>
+      <description>本文介绍如何基于ISO27001 实现信息安全体系落地方案。</description>
+    </item>
+  </channel>
+</rss>
