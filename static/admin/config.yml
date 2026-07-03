@@ -2,6 +2,7 @@ backend:
   name: github
   repo: taiguoqing-eng/myblog # 你的 GitHub 仓库名称
   branch: main                # 你的主分支名称
+  auth_type: "implicit" # 强制使用隐式流程，防止它触发 Netlify Identity 插件
   # 使用官方认证代理处理 OAuth，避免在代码中硬编码 Token
 
 media_folder: "static/images"  # 图片上传存储路径
