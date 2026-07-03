@@ -6,7 +6,7 @@ backend:
 media_folder: "static/images"
 public_folder: "/images"
 
-site_url: https://taigong.work
+site_url: https://www.taigong.work
 
 collections:
   - name: "posts"
