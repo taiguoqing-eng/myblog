@@ -3,11 +3,15 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Content Manager</title>
+    <title>CMS</title>
     <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url">
   </head>
   <body>
     <div id="nc-root"></div>
-    <script src="https://unpkg.com/decap-cms@3.1.0/dist/decap-cms.js"></script>
+    <!-- 关键改动：使用 app 核心版，不再包含 Netlify Identity 插件 -->
+    <script src="https://unpkg.com/decap-cms-app@3.1.0/dist/decap-cms-app.js"></script>
+    <script>
+        CMS.init();
+    </script>
   </body>
 </html>
