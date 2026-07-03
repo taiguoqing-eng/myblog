@@ -3,7 +3,6 @@ backend:
   repo: taiguoqing-eng/myblog # 你的 GitHub 仓库名称
   branch: main                # 你的主分支名称
   # 使用官方认证代理处理 OAuth，避免在代码中硬编码 Token
-  base_url: https://decap-cms-oauth.netlify.app 
 
 media_folder: "static/images"  # 图片上传存储路径
 public_folder: "/images"       # 图片在网站中的访问路径
