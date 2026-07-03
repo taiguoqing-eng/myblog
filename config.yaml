@@ -35,7 +35,14 @@ params:
   env: production
   description: "专注于网络安全、自动化运维与 IT 技术分享的个人博客。"
   author: "Taigong"
-
+  fuseOpts:
+    isCaseSensitive: false
+    shouldSort: true
+    threshold: 0.4
+    keys:
+      - title
+      - summary
+      - content
   defaultTheme: auto
 
   ShowReadingTime: true
