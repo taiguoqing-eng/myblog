@@ -4,14 +4,23 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Content Manager</title>
-    <!-- 强制使用根目录下的绝对路径 -->
-    <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url">
   </head>
   <body>
+    <div id="nc-root"></div>
+    <!-- 引入核心库 -->
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
     <script>
-      // 如果自动加载失败，强制设置配置路径
-      window.CMS_CONFIG_URL = '/admin/config.yml';
+      // 强制手动初始化，覆盖默认行为
+      CMS.init({
+        config: {
+          backend: {
+            name: "github",
+            repo: "taiguoqing-eng/myblog",
+            branch: "main",
+            auth_type: "implicit" // 强制不使用 Netlify 身份验证
+          }
+        }
+      });
     </script>
   </body>
 </html>
