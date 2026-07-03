@@ -1,37 +1,43 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Content Manager</title>
-    <!-- 使用 3.0.0 版本 -->
-    <script src="https://unpkg.com/decap-cms@3.0.0/dist/decap-cms.js"></script>
-  </head>
-  <body>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMS</title>
+</head>
+<body>
+    <!-- 1. 必须手动创建这个 div，CMS 才能挂载上去 -->
+    <div id="nc-root"></div>
+
+    <!-- 2. 使用 app 版本，它不带 Netlify 强制跳转 -->
+    <script src="https://unpkg.com/decap-cms-app@3.0.0/dist/decap-cms-app.js"></script>
+
     <script>
-      // 捕获所有初始化错误，防止页面白屏
-      try {
+        // 3. 必须在脚本加载后执行 init
+        window.CMS_MANUAL_INIT = true;
+        
         CMS.init({
-          config: {
-            backend: {
-              name: "github",
-              repo: "taiguoqing-eng/myblog",
-              branch: "main",
-              auth_type: "implicit"
-            },
-            collections: [{
-              name: "posts",
-              label: "Blog",
-              folder: "content/posts",
-              create: true,
-              fields: [{label: "Title", name: "title", widget: "string"}, {label: "Body", name: "body", widget: "markdown"}]
-            }]
-          }
+            config: {
+                backend: {
+                    name: "github",
+                    repo: "taiguoqing-eng/myblog",
+                    branch: "main",
+                    auth_type: "implicit"
+                },
+                media_folder: "static/images",
+                public_folder: "/images",
+                collections: [{
+                    name: "posts",
+                    label: "Posts",
+                    folder: "content/posts",
+                    create: true,
+                    fields: [
+                        {label: "Title", name: "title", widget: "string"},
+                        {label: "Body", name: "body", widget: "markdown"}
+                    ]
+                }]
+            }
         });
-      } catch (e) {
-        console.error("CMS init failed:", e);
-        document.body.innerHTML = "<h1>CMS 加载失败，请检查控制台</h1>";
-      }
     </script>
-  </body>
+</body>
 </html>
