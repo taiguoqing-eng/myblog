@@ -4,14 +4,36 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Content Manager</title>
-    <!-- 这里是 Decap CMS 的核心配置路径 -->
+    <!-- 这里依然指向你的 config.yml -->
     <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url">
   </head>
+
   <body>
-    <!-- Decap CMS 必须的根节点 -->
     <div id="nc-root"></div>
-    
-    <!-- 加载脚本：这是唯一的入口 -->
+
+    <script>
+      // 【关键修复】在加载 CMS 之前，手动清除所有可能的 Netlify 缓存
+      localStorage.removeItem("netlify-cms-user");
+      localStorage.removeItem("netlify-identity-user");
+      
+      // 告诉 CMS 不要尝试自动检测环境 (手动初始化模式)
+      window.CMS_MANUAL_INIT = true;
+    </script>
+
+    <!-- 重新加载脚本 -->
     <script src="https://unpkg.com/decap-cms@3.1.0/dist/decap-cms.js"></script>
+
+    <script>
+      // 手动初始化：确保只使用 GitHub Backend
+      CMS.init({
+        config: {
+          backend: {
+            name: "github",
+            repo: "taiguoqing-eng/myblog",
+            branch: "main"
+          }
+        }
+      });
+    </script>
   </body>
 </html>
