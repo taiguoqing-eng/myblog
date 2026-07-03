@@ -1,20 +1,19 @@
 backend:
   name: github
-  repo: taiguoqing-eng/myblog   # 改成你的仓库
+  repo: taiguoqing-eng/myblog
   branch: main
+  base_url: https://www.taigong.work # 必须匹配你 Vercel 绑定的域名
+  auth_scope: repo
 
-media_folder: "static/images"
-public_folder: "/images"
-
-site_url: https://www.taigong.work
+media_folder: "images"        # 对应 static/images
+public_folder: "/images"      # 访问路径
 
 collections:
   - name: "posts"
     label: "文章"
     folder: "content/posts"
     create: true
-    slug: "{{slug}}"
-
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # 建议加上日期，避免路径冲突
     fields:
       - { label: "标题", name: "title", widget: "string" }
       - { label: "发布时间", name: "date", widget: "datetime" }

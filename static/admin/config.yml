@@ -5,7 +5,7 @@ backend:
   base_url: https://www.taigong.work # 必须匹配你 Vercel 绑定的域名
   auth_scope: repo
 
-media_folder: "images"        # 对应 static/images
+media_folder: "static/images"        # 对应 static/images
 public_folder: "/images"      # 访问路径
 
 collections:
