@@ -4,24 +4,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Content Manager</title>
-    <!-- 显式定义配置路径 -->
     <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url">
   </head>
 
   <body>
-    <!-- 1. 确保挂载点在最前面 -->
+    <!-- 挂载点 -->
     <div id="nc-root"></div>
 
-    <!-- 2. 将脚本移动到 body 底部，这能确保 div 已经被 DOM 引擎处理 -->
+    <!-- 唯一的加载方式：不加 defer，不加 init() 调用 -->
     <script src="https://cdn.jsdelivr.net/npm/decap-cms@3.1.0/dist/decap-cms.js"></script>
-    
-    <!-- 3. 如果依然报错，使用以下代码强制 CMS 初始化 -->
-    <script>
-      window.addEventListener('DOMContentLoaded', () => {
-        if (window.CMS) {
-          CMS.init();
-        }
-      });
-    </script>
   </body>
 </html>
