@@ -71,3 +71,6 @@ menu:
     - name: "关于"
       url: "/about/"
       weight: 5
+    - name: Search
+      url: /search/
+      weight: 6
