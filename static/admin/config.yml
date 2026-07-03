@@ -1,0 +1,22 @@
+backend:
+  name: github
+  repo: taiguoqing-eng/myblog # 你的 GitHub 仓库名称
+  branch: main                # 你的主分支名称
+  # 使用官方认证代理处理 OAuth，避免在代码中硬编码 Token
+  base_url: https://decap-cms-oauth.netlify.app 
+
+media_folder: "static/images"  # 图片上传存储路径
+public_folder: "/images"       # 图片在网站中的访问路径
+
+collections:
+  - name: "posts"
+    label: "文章"
+    folder: "content/posts"    # 博客文章存储路径
+    create: true               # 允许创建新文章
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # 自动生成带日期的文件名
+    fields:
+      - { label: "标题", name: "title", widget: "string" }
+      - { label: "发布时间", name: "date", widget: "datetime" }
+      - { label: "分类", name: "categories", widget: "list", required: false }
+      - { label: "标签", name: "tags", widget: "list", required: false }
+      - { label: "内容", name: "body", widget: "markdown" }
