@@ -4,36 +4,34 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Content Manager</title>
+    <!-- 使用 3.0.0 版本 -->
+    <script src="https://unpkg.com/decap-cms@3.0.0/dist/decap-cms.js"></script>
   </head>
   <body>
-    <!-- 1. 使用 jsDelivr 替代 unpkg -->
-    <!-- 2. 指定 2.10.0 版本（这是较稳定的老版本，对 React 兼容性更好） -->
-    <script src="https://cdn.jsdelivr.net/npm/decap-cms@2.10.0/dist/decap-cms.js"></script>
     <script>
-      // 延迟初始化，确保 body 完全渲染完毕
-      window.onload = function() {
+      // 捕获所有初始化错误，防止页面白屏
+      try {
         CMS.init({
           config: {
             backend: {
               name: "github",
               repo: "taiguoqing-eng/myblog",
-              branch: "main"
+              branch: "main",
+              auth_type: "implicit"
             },
-            collections: [
-              {
-                name: "posts",
-                label: "文章",
-                folder: "content/posts",
-                create: true,
-                fields: [
-                  { label: "标题", name: "title", widget: "string" },
-                  { label: "内容", name: "body", widget: "markdown" }
-                ]
-              }
-            ]
+            collections: [{
+              name: "posts",
+              label: "Blog",
+              folder: "content/posts",
+              create: true,
+              fields: [{label: "Title", name: "title", widget: "string"}, {label: "Body", name: "body", widget: "markdown"}]
+            }]
           }
         });
-      };
+      } catch (e) {
+        console.error("CMS init failed:", e);
+        document.body.innerHTML = "<h1>CMS 加载失败，请检查控制台</h1>";
+      }
     </script>
   </body>
 </html>
