@@ -4,14 +4,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Content Manager</title>
+    <!-- 这里是 Decap CMS 的核心配置路径 -->
     <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url">
   </head>
-
   <body>
-    <!-- 挂载点 -->
+    <!-- Decap CMS 必须的根节点 -->
     <div id="nc-root"></div>
-
-    <!-- 唯一的加载方式：不加 defer，不加 init() 调用 -->
-    <script src="https://cdn.jsdelivr.net/npm/decap-cms@3.1.0/dist/decap-cms.js"></script>
+    
+    <!-- 加载脚本：这是唯一的入口 -->
+    <script src="https://unpkg.com/decap-cms@3.1.0/dist/decap-cms.js"></script>
   </body>
 </html>
