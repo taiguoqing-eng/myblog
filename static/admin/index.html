@@ -5,27 +5,30 @@
     <title>Content Manager</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- 可选：避免某些环境白屏 -->
     <meta name="robots" content="noindex" />
 
-    <!-- Identity（必须） -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
-    <!-- CMS（必须） -->
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/decap-cms@3.1.0/dist/decap-cms.js"></script>
   </head>
 
   <body>
+    <!-- ⭐ 关键修复：必须存在 -->
+    <div id="nc-root"></div>
+
     <script>
-      // 初始化 Netlify Identity（GitHub login 必经路径）
       if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("init", (user) => {
+        window.netlifyIdentity.on("init", user => {
           if (!user) {
             window.netlifyIdentity.on("login", () => {
               document.location.href = "/admin/";
             });
           }
         });
+      }
+
+      // ⭐ 强制挂载 CMS（修复 appendChild null）
+      if (window.CMS) {
+        CMS.init();
       }
     </script>
   </body>
