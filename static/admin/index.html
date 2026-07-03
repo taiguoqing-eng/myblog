@@ -6,24 +6,15 @@
     <title>Content Manager</title>
     <meta name="robots" content="noindex" />
 
-    <!-- ⭐ 关键修复：显式告诉 Decap CMS 配置文件位置 -->
+    <!-- 显式配置文件路径 -->
     <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url">
 
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/decap-cms@3.1.0/dist/decap-cms.js" defer></script>
+    <!-- 直接加载 Decap CMS -->
+    <script src="https://cdn.jsdelivr.net/npm/decap-cms@3.1.0/dist/decap-cms.js"></script>
   </head>
 
   <body>
+    <!-- CMS 挂载点 -->
     <div id="nc-root"></div>
-
-    <script>
-      window.netlifyIdentity.on("init", user => {
-        if (!user) {
-          window.netlifyIdentity.on("login", () => {
-            document.location.href = "/admin/";
-          });
-        }
-      });
-    </script>
   </body>
 </html>

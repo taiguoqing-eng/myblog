@@ -6,24 +6,15 @@
     <title>Content Manager</title>
     <meta name="robots" content="noindex" />
 
-    <!-- 移入 head 中并添加 defer，确保 DOM 加载完成后执行 -->
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/decap-cms@3.1.0/dist/decap-cms.js" defer></script>
+    <!-- 显式配置文件路径 -->
+    <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url">
+
+    <!-- 直接加载 Decap CMS -->
+    <script src="https://cdn.jsdelivr.net/npm/decap-cms@3.1.0/dist/decap-cms.js"></script>
   </head>
 
   <body>
-    <!-- Decap CMS 自动挂载点 -->
+    <!-- CMS 挂载点 -->
     <div id="nc-root"></div>
-
-    <script>
-      // Netlify Identity 配置
-      window.netlifyIdentity.on("init", user => {
-        if (!user) {
-          window.netlifyIdentity.on("login", () => {
-            document.location.href = "/admin/";
-          });
-        }
-      });
-    </script>
   </body>
 </html>
