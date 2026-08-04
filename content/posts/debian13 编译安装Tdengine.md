@@ -34,7 +34,7 @@ deb https://mirrors.aliyun.com/debian-security/ trixie-security main contrib non
 deb https://mirrors.aliyun.com/debian/ trixie-updates main contrib non-free non-free-firmware
 deb https://mirrors.aliyun.com/debian/ trixie-backports main contrib non-free non-free-firmware
 deb https://mirrors.aliyun.com/debian-security/ trixie-security main contrib non-free non-free-firmware" > /etc/apt/sources.list'
-###### 环境准备与依赖安装
+### 环境准备与依赖安装
 
 sudo apt update
 sudo apt install -y gcc cmake build-essential git libssl-dev
