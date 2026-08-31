@@ -13,6 +13,12 @@ tags:
   - "Windows"
   - "批处理"
   - "数据备份"
+summary: "用 Robocopy 批处理脚本实现企业财务数据自动增量备份：源路径可用性检查防止误删、日志记录、失败重试，以及如何接入计划任务定期执行。"
+cover:
+  image: "/images/covers/robocopy.png"
+  alt: "Robocopy 财务数据自动备份封面"
+  caption: ""
+  relative: false
 ---
 需求是定期备份某个远程目录文件，增量备份。
 以下内容为脚本，请作为批处理脚本使用

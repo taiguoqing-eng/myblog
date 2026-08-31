@@ -12,6 +12,12 @@ categories:
 tags:
   - "ISO27001"
   - "信息安全管理体系"
+summary: "ISO/IEC 27001:2022 信息安全管理体系全套落地方案：项目组织与团队、风险评估、四阶文件体系、试运行、内审、管理评审到认证审核，附完整时间线与交付物清单。"
+cover:
+  image: "/images/covers/iso27001.png"
+  alt: "ISO27001 信息安全管理体系方案封面"
+  caption: ""
+  relative: false
 ---
 # ISO/IEC 27001:2022 信息安全管理体系 全套落地方案
 

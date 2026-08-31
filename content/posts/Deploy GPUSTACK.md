@@ -11,6 +11,12 @@ tags:
   - "AI"
   - "DEEPSEEK"
   - "GPUSTACK"
+summary: "用 GPUStack + Docker 容器直通，在 4 台昇腾 310P3 上搭建分布式推理集群并部署 DeepSeek-V4-Flash：多机架构、Worker 容器注册、并行参数配置与极限压测验证全流程。"
+cover:
+  image: "/images/covers/gpustack.png"
+  alt: "昇腾 310P 部署 GPUStack 集群封面"
+  caption: ""
+  relative: false
 ---
 
 ### GPUSTACK
