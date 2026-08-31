@@ -12,6 +12,12 @@ categories:
 tags:
   - "Tdengine"
   - "运维"
+summary: "在 Debian 13（trixie）上从源码编译安装 TDengine 3.3.4.11：切换阿里源、安装编译依赖、cmake 构建、配置库路径并注册 systemd 开机自启，全程命令可直接复制。"
+cover:
+  image: "/images/covers/debian-tdengine.png"
+  alt: "Debian13 编译安装 TDengine 封面"
+  caption: ""
+  relative: false
 ---
 
 检查用户权限

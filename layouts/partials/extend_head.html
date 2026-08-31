@@ -1,0 +1,32 @@
+<!-- ============================================================
+  head 注入（每个页面生效）
+  1) 移动端浏览器地址栏颜色
+  2) 百度统计（取消注释并填入统计 ID 后启用；也可改用 Vercel Analytics）
+  3) 站点级 JSON-LD
+============================================================ -->
+
+<meta name="theme-color" content="#2563eb">
+<meta name="color-scheme" content="light dark">
+
+<!-- 百度统计（可选）
+<script>
+  var _hmt = _hmt || [];
+  (function () {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?你的统计ID";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+-->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "邰工的个人技术博客",
+  "alternateName": "TAIGONGWORK",
+  "url": "https://www.taigong.work/",
+  "description": "专注于 AI 工程、网络安全、架构设计与自动化运维的个人技术博客。"
+}
+</script>

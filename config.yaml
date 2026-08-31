@@ -1,30 +1,33 @@
-baseURL: "https://www.taigong.work/"  # 建议加上 www，匹配你的主域名
+baseURL: "https://www.taigong.work/"
 title: "邰工的个人技术博客"
 languageCode: "zh-cn"
 theme: "PaperMod"
 
-# 修复之前的淘汰参数（已将 paginate 改为新语法）
+enableRobotsTXT: true
+enableEmoji: true
+enableGitInfo: true   # 从 Git 历史取 lastmod，配合 editPost 和 JSON-LD
+
 pagination:
   pagerSize: 10
 
-enableRobotsTXT: true
-
-# 补充：从 toml 合并过来的高级代码高亮配置
+# ---- 代码高亮：monokai（内联样式，无需额外 CSS，任何环境都能正确显示）----
 markup:
   highlight:
     codeFences: true
     guessSyntax: true
     lineNos: true
-    theme: "monokai"
-    goldmark:
+    lineNumbersInTable: true
+    noClasses: true
+    style: monokai
+  goldmark:
     renderer:
-      unsafe: true
+      unsafe: true   # 允许文章内使用原生 HTML
 
 outputs:
   home:
     - HTML
     - RSS
-    - JSON
+    - JSON   # 站内搜索依赖
   page:
     - HTML
   section:
@@ -32,9 +35,60 @@ outputs:
     - RSS
 
 params:
-  env: production
-  description: "专注于网络安全、自动化运维与 IT 技术分享的个人博客。"
+  env: production    # 开启 PaperMod 的 OG/Twitter/JSON-LD 富媒体标签
+  title: "邰工的个人技术博客"
+  description: "专注于 AI 工程、网络安全、架构设计与自动化运维的个人技术博客。"
+  keywords:
+    - AI
+    - 网络安全
+    - 架构设计
+    - 自动化运维
+    - Hugo
   author: "Taigong"
+  images: ["/images/og-cover.png"]   # 全站默认分享图（分享到微信/推特时显示）
+
+  DateFormat: "2006-01-02"
+  defaultTheme: auto
+  disableThemeToggle: false
+
+  mainSections: ["posts"]   # 首页只展示 posts 栏目
+
+  ShowReadingTime: true
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowToc: true
+  TocOpen: false
+  ShowCodeCopyButtons: true
+  ShowShareButtons: true
+  ShowWordCount: true
+  ShowRssButtonInSectionTermList: true
+  UseHugoToc: true
+
+  # ---- 首页信息区（标题 + 简介 + 社交图标）----
+  homeInfoParams:
+    Title: "👋 欢迎来到 邰工 的技术博客"
+    Content: |
+      记录 AI 工程实践、网络安全、架构设计与自动化运维，
+      只写「能落地」的技术方案。最新文章在下方。
+
+  socialIcons:
+    - name: github
+      url: "https://github.com/taiguoqing-eng"
+    - name: rss
+      url: "https://www.taigong.work/index.xml"
+
+  # ---- 封面图 ----
+  cover:
+    linkFullImages: true
+    responsiveImages: true
+
+  # ---- 每篇文章底部「建议修改」按钮（链接到 GitHub 编辑页）----
+  editPost:
+    URL: "https://github.com/taiguoqing-eng/myblog/edit/main/content"
+    Text: "建议修改"
+    appendFilePath: true
+
+  # ---- 站内搜索调优 ----
   fuseOpts:
     isCaseSensitive: false
     shouldSort: true
@@ -43,16 +97,9 @@ params:
       - title
       - summary
       - content
-  defaultTheme: auto
 
-  ShowReadingTime: true
-  ShowPostNavLinks: true
-  ShowBreadCrumbs: true
-  ShowToc: true
-  TocOpen: true
-  ShowCodeCopyButtons: true
-  ShowShareButtons: true
-  ShowWordCount: true
+  # ---- 评论（配合 layouts/partials/comments.html）----
+  comments: true
 
 menu:
   main:
@@ -68,9 +115,22 @@ menu:
     - name: "标签"
       url: "/tags/"
       weight: 4
+    - name: "归档"
+      url: "/archives/"
+      weight: 5
     - name: "关于"
       url: "/about/"
-      weight: 5
+      weight: 6
     - name: Search
       url: /search/
-      weight: 6
+      weight: 7
+
+# ---- 相关文章（配合 layouts/partials/extend_post_content.html）----
+related:
+  includeNewer: true
+  threshold: 60
+  indices:
+    - name: tags
+      weight: 100
+    - name: categories
+      weight: 80

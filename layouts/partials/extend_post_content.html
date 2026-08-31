@@ -1,0 +1,16 @@
+{{- /* 文末「相关阅读」：优先按标签/分类推荐，无匹配时回退到最新文章 */}}
+{{- if and .IsPage (not .Params.hideRelatedPosts) }}
+{{- $related := (where site.RegularPages "Type" "in" site.Params.mainSections).Related . | first 5 }}
+{{- if lt (len $related) 1 }}
+  {{- $related = where (where site.RegularPages "Type" "in" site.Params.mainSections) "Permalink" "ne" .Permalink | first 5 }}
+{{- end }}
+{{- if gt (len $related) 0 }}
+<hr style="margin: 2.5rem 0 1.25rem;">
+<h2 style="font-size: 1.15rem; margin-bottom: 0.75rem;">📚 相关阅读</h2>
+<ul style="line-height: 2; padding-inline-start: 1.25rem;">
+  {{- range $related }}
+  <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+  {{- end }}
+</ul>
+{{- end }}
+{{- end }}

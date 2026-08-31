@@ -12,6 +12,12 @@ categories:
 tags:
   - "LangChain"
   - "LangGraph"
+summary: "对比 LangChain 与 LangGraph 的设计差异，并用 DeepSeek（OpenAI 兼容接口）实现一个基于 ReAct 模式的智能代理，含完整代码与逐步拆解。"
+cover:
+  image: "/images/covers/langchain-langgraph.png"
+  alt: "LangChain 和 LangGraph 封面"
+  caption: ""
+  relative: false
 ---
 ## **LangChain和LangGraph**
 
